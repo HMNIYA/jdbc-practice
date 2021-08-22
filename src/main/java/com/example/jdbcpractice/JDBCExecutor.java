@@ -30,7 +30,7 @@ public class JDBCExecutor {
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter("file_for_project.csv"));
 
             // write header line containing column names
-            fileWriter.write("first_name,last_name,manager_id,department_id,salary");
+            //fileWriter.write("first_name,last_name,manager_id,department_id,salary");
 
             while (result.next()) {
                 int id = result.getInt("id");
@@ -41,9 +41,9 @@ public class JDBCExecutor {
                 int salary = result.getInt("salary");
 
                 String line = String.format("%d,%s,%s,%d,%d,%d",id, firstName, lastName, managerId, departmentId, salary);
-
-                fileWriter.newLine();
                 fileWriter.write(line);
+                fileWriter.newLine();
+
             }
 
             statement.close();
@@ -51,6 +51,7 @@ public class JDBCExecutor {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
         public List<Employee> findEmployees() {
