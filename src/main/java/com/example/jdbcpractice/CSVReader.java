@@ -13,7 +13,7 @@ import static java.lang.Integer.parseInt;
 
 public class CSVReader {
     public static void main(String... args) {
-        List<Employee> books = readEmployeeFromCSV("file_for_project.csv");
+        List<Employee> books = readEmployeeFromCSV("news.csv");
         for (Employee b : books) {
             System.out.println(b);
         }
@@ -56,3 +56,5 @@ public class CSVReader {
         return employee;
         }
 }
+
+
