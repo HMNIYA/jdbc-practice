@@ -3,6 +3,7 @@ package com.example.jdbcpractice;
 import java.io.*;
 import java.sql.*;
 import java.util.List;
+
 import static java.lang.Integer.parseInt;
 
 public class JDBCExecutor {
@@ -10,26 +11,36 @@ public class JDBCExecutor {
     String USER = "sa";
     String PASSWORD = "";
 
-    public void saveEmployees(List<Employee> employeeList) {
+    public void saveEmployees() {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement stmt = conn.createStatement();
-            ResultSet rs;
             stmt = conn.createStatement();
             File file = new File("output.txt");
-            String query = "SELECT first_name,last_name,salary FROM EMPLOYEE WHERE (department_id = 1)";
-            rs = stmt.executeQuery(query);
-            Writer out = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(file), "UTF-8"));
-            while (rs.next()) {
-                String arg1 = rs.getString(1);
-                String arg2 = rs.getString(2);
-                String arg3 = rs.getString(3);
-                System.out.println(arg1 + ", " + arg2 + ", " + arg3);
-                out.write(arg1 + ", ");
-                out.write(arg2 + ", ");
-                out.write(arg3 + "\n");
-            }
+            String query = "SELECT DISTINCT *\n" +
+                    "FROM DEPARTMENT AS d\n" +
+                    "INNER JOIN\n" +
+                    "EMPLOYEE AS e\n" +
+                    "ON e.department_id=d.id\n" +
+                    "INNER JOIN\n" +
+                    "EMPLOYEE AS e1\n" +
+                    "ON e.manager_id=e1.id WHERE e.manager_id IS NOT NULL";
+            ResultSet rs = stmt.executeQuery(query);
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+                while (rs.next()) {
+                    String departmentName = rs.getString(2);
+                    String managerFirstName = rs.getString(10);
+                    String managerLastName = rs.getString(11);
+                    int managerSalary = rs.getInt(14);
+                    String employeeFirstName = rs.getString(4);
+                    String employeeLastName = rs.getString(5);
+                    int employeeSalary = rs.getInt(8);
+                    System.out.println(departmentName + ": " + managerFirstName + " " + managerLastName + " {" + managerSalary + "}: " + employeeFirstName + " " + employeeLastName + " {" + employeeSalary + "}");
+
+//                    out.write(arg1 + ", ");
+                }
+
+
             out.close();
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -37,7 +48,7 @@ public class JDBCExecutor {
         }
     }
 
-    public void findEmployees() {
+    public void addEmployees() {
         String csvFilePath = "news.csv";
         int batchSize = 20;
         Connection connection = null;

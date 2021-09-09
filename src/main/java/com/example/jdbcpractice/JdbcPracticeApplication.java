@@ -17,18 +17,14 @@ public class JdbcPracticeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        //TODO: в args первым аргументом передать файл в котором будет находится список Employee
-        //TODO: сохранить новых Employee-в в соответстующиую таблицу
         var jdbcExecutor = new JDBCExecutor();
-        jdbcExecutor.saveEmployees(List.of(new Employee()));
-
-        //TODO:Вернуть всех Employee-в из таблицы Employee
-        jdbcExecutor.findEmployees();
+        // добавление сотрудников из файла
+        jdbcExecutor.addEmployees();
+        // вывод стркутуры департамента в файл
+        jdbcExecutor.saveEmployees();
         //TODO:Сохранить в исходный файл информацию по каждому департаменту
         //TODO:Department: <название>
         //TODO:Manager: <ФИО> <ЗП> и список его подчиненных
         //TODO:Employee: <ФИО> <ЗП>
     }
-
-
 }
