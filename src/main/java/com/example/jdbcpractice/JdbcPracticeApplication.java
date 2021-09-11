@@ -21,10 +21,6 @@ public class JdbcPracticeApplication implements CommandLineRunner {
         // добавление сотрудников из файла
         jdbcExecutor.addEmployees();
         // вывод стркутуры департамента в файл
-        jdbcExecutor.saveEmployees();
-        //TODO:Сохранить в исходный файл информацию по каждому департаменту
-        //TODO:Department: <название>
-        //TODO:Manager: <ФИО> <ЗП> и список его подчиненных
-        //TODO:Employee: <ФИО> <ЗП>
+        jdbcExecutor.outputEmployeesToTxt();
     }
 }

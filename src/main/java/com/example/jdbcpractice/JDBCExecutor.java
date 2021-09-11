@@ -11,7 +11,7 @@ public class JDBCExecutor {
     String USER = "sa";
     String PASSWORD = "";
 
-    public void saveEmployees() {
+    public void outputEmployeesToTxt() {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -27,21 +27,29 @@ public class JDBCExecutor {
                     "ON e.manager_id=e1.id WHERE e.manager_id IS NOT NULL";
             ResultSet rs = stmt.executeQuery(query);
             Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
-                while (rs.next()) {
-                    String departmentName = rs.getString(2);
-                    String managerFirstName = rs.getString(10);
-                    String managerLastName = rs.getString(11);
-                    int managerSalary = rs.getInt(14);
-                    String employeeFirstName = rs.getString(4);
-                    String employeeLastName = rs.getString(5);
-                    int employeeSalary = rs.getInt(8);
-                    System.out.println(departmentName + ": " + managerFirstName + " " + managerLastName + " {" + managerSalary + "}: " + employeeFirstName + " " + employeeLastName + " {" + employeeSalary + "}");
+            String lastDepartment = "";
+            String lastManager = "";
+            while (rs.next()) {
+                String departmentName = rs.getString(2);
+                String managerFirstName = rs.getString(10);
+                String managerLastName = rs.getString(11);
+                int managerSalary = rs.getInt(14);
+                String employeeFirstName = rs.getString(4);
+                String employeeLastName = rs.getString(5);
+                int employeeSalary = rs.getInt(8);
 
-//                    out.write(arg1 + ", ");
+                if (!(lastDepartment.equals(departmentName))) {
+                    out.write("\nDepartment: " + departmentName + ": ");
+                    lastDepartment = departmentName;
                 }
-
-
+                if (!(lastManager.equals(managerFirstName + managerLastName))) {
+                    out.write("\n        Manager: " + managerFirstName + " " + managerLastName + " (" + managerSalary + "): ");
+                    lastManager = managerFirstName + managerLastName;
+                }
+                out.write("\n                    Employee: " + employeeFirstName + " " + employeeLastName + " (" + employeeSalary + "): ");
+            }
             out.close();
+
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
