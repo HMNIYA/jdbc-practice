@@ -1,4 +1,6 @@
-package com.example.jdbcpractice;
+package com.example.jdbcpractice.service;
+
+import com.example.jdbcpractice.model.Employee;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,12 +14,6 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 public class CSVReader {
-    public static void main(String... args) {
-        List<Employee> books = readEmployeeFromCSV("news.csv");
-        for (Employee b : books) {
-            System.out.println(b);
-        }
-    }
 
     private static List<Employee> readEmployeeFromCSV(String fileName) {
         List<Employee> books = new ArrayList<>();
