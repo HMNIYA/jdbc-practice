@@ -46,7 +46,7 @@ public class JDBCExecutor {
                     out.write("\n        Manager: " + managerFirstName + " " + managerLastName + " (" + managerSalary + "): ");
                     lastManager = managerFirstName + managerLastName;
                 }
-                out.write("\n                    Employee: " + employeeFirstName + " " + employeeLastName + " (" + employeeSalary + "): ");
+                out.write("\n                Employee: " + employeeFirstName + " " + employeeLastName + " (" + employeeSalary + "): ");
             }
             out.close();
 
