@@ -1,7 +1,5 @@
 package com.example.jdbcpractice.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import java.io.Serializable;
 
 public class Employee implements Serializable {
@@ -13,6 +11,9 @@ public class Employee implements Serializable {
     private String employeeFirstName;
     private String employeeLastName;
     private int employeeSalary;
+    private int managerId;
+    private int departmentId;
+    private int employeeId;
 
     public String getDepartmentName() {
         return departmentName;
@@ -70,6 +71,30 @@ public class Employee implements Serializable {
         this.employeeSalary = employeeSalary;
     }
 
+    public int getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(int managerId) {
+        this.managerId = managerId;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -80,6 +105,9 @@ public class Employee implements Serializable {
                 ", employeeFirstName='" + employeeFirstName + '\'' +
                 ", employeeLastName='" + employeeLastName + '\'' +
                 ", employeeSalary=" + employeeSalary +
+                ", managerId=" + managerId +
+                ", departmentId=" + departmentId +
+                ", employeeId=" + employeeId +
                 '}';
     }
 }
