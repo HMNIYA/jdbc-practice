@@ -1,7 +1,9 @@
 package com.example.jdbcpractice;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.jdbcpractice.model.Employee;
+import com.example.jdbcpractice.service.FileLoader;
+import com.example.jdbcpractice.service.JDBCExecutor;
+import com.example.jdbcpractice.service.WorkStructureConverter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +19,12 @@ public class JdbcPracticeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        var fileLoader = new FileLoader();
+        List<Employee> employees = fileLoader.readFile("data/new-employees.csv");
         var jdbcExecutor = new JDBCExecutor();
-        // добавление сотрудников из файла
-        jdbcExecutor.addEmployees();
-        // вывод стркутуры департамента в файл
-        jdbcExecutor.outputEmployeesToTxt();
+        jdbcExecutor.saveEmployees(employees);
+        String employeeStr = WorkStructureConverter.convertToCsvString(jdbcExecutor.findEmployees());
+        fileLoader.writeToFile("data/all-employees.csv", employeeStr);
+
     }
 }
