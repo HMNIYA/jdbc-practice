@@ -1,4 +1,4 @@
-package com.example.jdbcpractice.model;
+package com.example.jdbcpractice.persistence.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

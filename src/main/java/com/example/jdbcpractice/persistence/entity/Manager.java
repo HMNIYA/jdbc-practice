@@ -1,4 +1,4 @@
-package com.example.jdbcpractice.model;
+package com.example.jdbcpractice.persistence.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,11 +10,8 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class Employee {
+public class Manager {
     int id;
     String firstName;
     String lastName;
-    int managerId;
-    int departmentId;
-    double salary;
 }
