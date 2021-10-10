@@ -1,17 +1,29 @@
 package com.example.jdbcpractice.persistence.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Builder
 @Getter
+@Entity
 @EqualsAndHashCode
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Table(name = "EMPLOYEE")
+@Where(clause = "manager_id is null")
 public class Manager {
-    int id;
+    @Id
+    @GeneratedValue
+    Long id;
     String firstName;
     String lastName;
+    BigDecimal salary;
+
+    @ManyToOne
+    Department department;
 }

@@ -1,4 +1,4 @@
-package com.example.jdbcpractice.persistence;
+package com.example.jdbcpractice.persistence.jdbc;
 
 import com.example.jdbcpractice.persistence.jdbc.JDBCExecutor;
 import com.example.jdbcpractice.persistence.jdbc.model.Employee;

@@ -1,16 +1,24 @@
 package com.example.jdbcpractice.persistence.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @Getter
 @EqualsAndHashCode
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Department {
-    int id;
+    @Id
+    @GeneratedValue
+    Long id;
     String departmentName;
+
+    @OneToMany(mappedBy = "department")
+    List<Employee> employeeList;
 }
