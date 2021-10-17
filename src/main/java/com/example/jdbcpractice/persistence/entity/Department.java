@@ -20,5 +20,8 @@ public class Department {
     String departmentName;
 
     @OneToMany(mappedBy = "department")
-    List<Employee> employeeList;
+    List<Employee> employees;
+
+    @OneToOne(mappedBy = "department")
+    Manager manager;
 }

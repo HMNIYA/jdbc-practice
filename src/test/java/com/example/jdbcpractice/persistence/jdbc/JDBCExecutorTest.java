@@ -1,6 +1,5 @@
 package com.example.jdbcpractice.persistence.jdbc;
 
-import com.example.jdbcpractice.persistence.jdbc.JDBCExecutor;
 import com.example.jdbcpractice.persistence.jdbc.model.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
