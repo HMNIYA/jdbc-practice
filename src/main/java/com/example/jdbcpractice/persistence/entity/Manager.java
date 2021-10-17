@@ -24,6 +24,6 @@ public class Manager {
     String lastName;
     BigDecimal salary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     Department department;
 }
