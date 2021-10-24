@@ -15,12 +15,17 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Employee {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String firstName;
     String lastName;
     BigDecimal salary;
+    @Column(name = "manager_id")
+    Integer managerId;
+    @Column(name = "department_id")
+    Integer departmentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id", insertable = false, updatable = false)
     Department department;
 }
