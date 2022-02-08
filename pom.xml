@@ -76,7 +76,7 @@
 
                     <gitFlowConfig>
                         <productionBranch>master</productionBranch>
-                        <developmentBranch>develop</developmentBranch>
+                        <developmentBranch>spring-example</developmentBranch>
                         <featureBranchPrefix>feature/</featureBranchPrefix>
                         <releaseBranchPrefix>release/</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
